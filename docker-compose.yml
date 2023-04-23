@@ -1,0 +1,30 @@
+version: '2.2.2'
+services:
+  node:
+    build: .
+    ports:
+      - 3000:3000
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - 27017:27017
+  nginx:
+    image: nginx
+    volumes:
+      - ./config:/etc/nginx/conf.d
+      - ./web:/usr/share/nginx/html
+    ports:
+      - 80:80
+  mongoku:
+    image: huggingface/mongoku
+    links:
+      - mongo
+    environment:
+      MONGOKU_DEFAULT_HOST: mongodb://root:example@mongo:27017
+    ports:
+      - 3100:3100
