@@ -59,9 +59,6 @@ services:
       - 3000:3000
   mongo:
     image: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
       - ./data/db:/data/db
     ports:
@@ -78,9 +75,16 @@ services:
     depends_on:
       - mongo
     environment:
-      MONGOKU_DEFAULT_HOST: mongodb://root:example@mongo:27017
+      MONGOKU_DEFAULT_HOST: mongodb://mongo:27017
     ports:
       - 3100:3100
+  mongoseed:
+    image: mongo
+    links:
+      - mongo
+    volumes:
+      - ./data/doc:/mongo-seed
+    command: /mongo-seed/import.sh
 ```
 
 共创建了 4 个容器，称为”服务(service)“:
