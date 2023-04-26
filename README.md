@@ -53,6 +53,8 @@ version: '2.2.2'
 services:
   node:
     build: .
+    depends_on:
+      - mongo
     ports:
       - 3000:3000
   mongo:
@@ -73,7 +75,7 @@ services:
       - 80:80
   mongoku:
     image: huggingface/mongoku
-    links:
+    depends_on:
       - mongo
     environment:
       MONGOKU_DEFAULT_HOST: mongodb://root:example@mongo:27017
