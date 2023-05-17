@@ -4,6 +4,12 @@ services:
     build: .
     depends_on:
       - mongo
+    links:
+      - mongo
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+    command: nodemon
     ports:
       - 3000:3000
   mongo:
@@ -22,6 +28,8 @@ services:
   mongoku:
     image: huggingface/mongoku
     depends_on:
+      - mongo
+    links:
       - mongo
     environment:
       MONGOKU_DEFAULT_HOST: mongodb://mongo:27017
