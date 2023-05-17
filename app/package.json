@@ -1,0 +1,25 @@
+{
+  "name": "luxund",
+  "version": "1.0.0",
+  "description": "An information retrieval system for searching Lu Xun’s diaries.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LazyPool/luxund.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongodb",
+    "nginx"
+  ],
+  "author": "lazypool",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LazyPool/luxund/issues"
+  },
+  "homepage": "https://github.com/LazyPool/luxund#readme"
+}
