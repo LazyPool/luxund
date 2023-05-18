@@ -4,7 +4,6 @@ async function timeFilter(sy, sm, sd, ey, em, ed, ry, rm, rd) {
 	ry = +ry; rm = +rm; rd = +rd;
 
 	let conditions = [];
-	let restrictions = [];
 
 	if (sy === ey) {
 		if (sm == em) {
@@ -22,11 +21,7 @@ async function timeFilter(sy, sm, sd, ey, em, ed, ry, rm, rd) {
 		conditions.push({ 年: ey, 月: em, 日: { $lte: ed }});
 	}
 
-	if (ry) restrictions.push({ 年: ry });
-	if (rm) restrictions.push({ 月: rm });
-	if (rd) restrictions.push({ 日: rd });
-
-	return { $or: conditions, $and: restrictions };
+	return { $or: conditions };
 }
 
 module.exports = { timeFilter };

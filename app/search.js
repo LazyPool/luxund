@@ -12,7 +12,6 @@ async function search(filter) {
 		const luxund = client.db('luxund');
 		const people = luxund.collection('people');
 
-		console.log(filter)
 		result = await people.find(filter).toArray();
 	} catch(err) {
 		console.error(err);
