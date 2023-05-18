@@ -1,25 +1,6 @@
 class Lists extends React.Component {
 	constructor(props) {
 		super(props);
-
-		this.props.diaries.sort((a, b) => {
-			if (a["年"] < b["年"]) {
-				return -1;
-			} else if (a["年"] > b["年"]) {
-				return 1;
-			} else if (a["月"] < b["月"]) {
-				return -1;
-			} else if (a["月"] > b["月"]) {
-				return 1;
-			} else if (a["日"] < b["日"]) {
-				return -1;
-			} else if (a["日"] > b["日"]) {
-				return 1;
-			} else {
-				return 0;
-			}
-		});
-
 	}
 
 	render() {
@@ -34,9 +15,19 @@ class Lists extends React.Component {
 			},
 		};
 
+		const sortedDiaries = this.props.diaries.sort((a, b) => {
+			if(a["年"] < b["年"]) return -1;
+			if(a["年"] > b["年"]) return  1;
+			if(a["月"] < b["月"]) return -1;
+			if(a["月"] > b["月"]) return  1;
+			if(a["日"] < b["日"]) return -1;
+			if(a["日"] > b["日"]) return  1;
+			return 0;
+		});
+
 		return (
 			<ul>
-			{this.props.diaries.map(
+			{sortedDiaries.map(
 				(diary, index) => 
 				<li key={ index }>
 					<div style={ style.div }>
