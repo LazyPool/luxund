@@ -37,6 +37,7 @@ class Lists extends React.Component {
 						<div>{ diary["月"] }</div>
 						<span style={style.span}>日:</span>
 						<div>{ diary["日"] }</div>
+						<a href={ `/detail?_id=${diary._id}` }>详情</a>
 					</div>
 					<div>{ diary["原文"] }</div>
 				</li> 
