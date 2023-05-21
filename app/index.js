@@ -1,13 +1,20 @@
 const express = require('express');
+const ObjectId = require('mongodb').ObjectId;
+const cors = require('cors');
 const search = require('/app/search.js');
 const { timeFilter } = require('/app/filters.js')
 
 const app = express();
 
-app.get('/search', async function(req, res) {
-	const { sy, sm, sd, ey, em, ed, ry, rm, rd } = req.query;
+app.use(cors());
 
-	let filter = await timeFilter(sy, sm, sd, ey, em, ed, ry, rm, rd);
+app.get('/search', async function(req, res) {
+	const { _id, sy, sm, sd, ey, em, ed, ry, rm, rd } = req.query;
+
+	let idfilter = _id ? { _id: new ObjectId(_id) } : {};
+	let timefilter = await timeFilter(sy, sm, sd, ey, em, ed, ry, rm, rd);
+
+	filter = { ...idfilter, ...timefilter };
 
 	let result = await search(filter);
 	res.send(result);
