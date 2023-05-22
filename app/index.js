@@ -5,6 +5,8 @@ const { idGen, timeGen, posGen, chrGen, whrGen, itemGen, affrGen } = require('/a
 
 const app = express();
 
+app.use(cors());
+
 app.get('/search', async function(req, res) {
 	const { id, sy, sm, sd, ey, em, ed, ry, rm, rd, pos, chr, whr, item, affr } = req.query;
 

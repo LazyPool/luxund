@@ -17,10 +17,11 @@ async function timeGen(sy, sm, sd, ey, em, ed, ry, rm, rd) {
 	if (sy === ey && sm === em && sd > ed) return {};
 
 	let filter = {}
+
 	let conditions = [];
 
 	if (sy === ey) {
-		if (sm == em) {
+		if (sm === em) {
 			conditions.push({ 年: sy, 月: sm, 日: { $gte: sd, $lte: ed }});
 		} else {
 			conditions.push({ 年: sy, 月: sm, 日: { $gte: sd }});
