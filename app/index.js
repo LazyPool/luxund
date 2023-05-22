@@ -1,4 +1,5 @@
 const express	= require('express');
+const cors		= require('cors');
 const search	= require('/app/search.js');
 const { singleVar, doubleVar } = require('/app/statistic.js');
 const { idGen, timeGen, posGen, chrGen, whrGen, itemGen, affrGen } = require('/app/filters.js')
