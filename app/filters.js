@@ -58,7 +58,7 @@ async function chrGen(chr) {
 }
 
 async function whrGen(whr) {
-	let filter = whr ? { 天气: pos } : {};
+	let filter = whr ? { 天气: whr } : {};
 
 	return filter;
 }
