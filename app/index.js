@@ -1,5 +1,6 @@
-const express = require('express');
-const search = require('/app/search.js');
+const express	= require('express');
+const search	= require('/app/search.js');
+const { singleVar, doubleVar } = require('/app/statistic.js');
 const { idGen, timeGen, posGen, chrGen, whrGen, itemGen, affrGen } = require('/app/filters.js')
 
 const app = express();
@@ -17,6 +18,41 @@ app.get('/search', async function(req, res) {
 
 	let filter = { ...idFilter, ...timeFilter, ...posFilter, ...chrFilter, ...whrFilter, ...itemFilter, ...affrFilter };
 	let result = await search(filter);
+
+	res.send(result);
+});
+
+app.get('/statistic', async function(req, res) {
+	const { sy, sm, sd, ey, em, ed, tar, lbl, val, mode } = req.query;
+
+	let timeFilter	= await timeGen(sy, sm, sd, ey, em, ed);
+	let limitFilter = {};
+
+	switch (lbl) {
+		case 'pos':
+			limitFilter = posGen(val);
+			break;
+		case 'chr':
+			limitFilter = chrGen(val);
+			break;
+		case 'whr':
+			limitFilter = whrGen(val);
+			break;
+		case 'item':
+			limitFilter = itemGen(val);
+			break;
+		case 'affr':
+			limitFilter = affrGen(val);
+			break;
+	}
+
+	let result;
+
+	if (mode === '2') {
+		result = await doubleVar(timeFilter, limitFilter, tar);
+	} else {
+		result = await singleVar(timeFilter, tar);
+	}
 
 	res.send(result);
 });

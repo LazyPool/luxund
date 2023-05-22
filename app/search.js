@@ -10,9 +10,9 @@ async function search(filter) {
 		console.log('Connected successfully to server');
 
 		const luxund = client.db('luxund');
-		const people = luxund.collection('people');
+		const people = luxund.collection('diary');
 
-		console.log(filter)
+		console.log(filter);
 		result = await people.find(filter).toArray();
 	} catch(err) {
 		console.error(err);
