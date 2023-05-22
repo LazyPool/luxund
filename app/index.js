@@ -1,15 +1,23 @@
 const express = require('express');
 const search = require('/app/search.js');
-const { timeFilter } = require('/app/filters.js')
+const { idGen, timeGen, posGen, chrGen, whrGen, itemGen, affrGen } = require('/app/filters.js')
 
 const app = express();
 
 app.get('/search', async function(req, res) {
-	const { sy, sm, sd, ey, em, ed, ry, rm, rd } = req.query;
+	const { id, sy, sm, sd, ey, em, ed, ry, rm, rd, pos, chr, whr, item, affr } = req.query;
 
-	let filter = await timeFilter(sy, sm, sd, ey, em, ed, ry, rm, rd);
+	let idFilter	= await idGen(id);
+	let timeFilter	= await timeGen(sy, sm, sd, ey, em, ed, ry, rm, rd);
+	let posFilter	= await posGen(pos);
+	let chrFilter   = await chrGen(chr);
+	let whrFilter   = await whrGen(whr);
+	let itemFilter  = await itemGen(item);
+	let affrFilter  = await affrGen(affr);
 
+	let filter = { ...idFilter, ...timeFilter, ...posFilter, ...chrFilter, ...whrFilter, ...itemFilter, ...affrFilter };
 	let result = await search(filter);
+
 	res.send(result);
 });
 
