@@ -23,7 +23,7 @@ app.get('/search', async function(req, res) {
 });
 
 app.get('/statistic', async function(req, res) {
-	const { sy, sm, sd, ey, em, ed, tar, lbl, val, mode } = req.query;
+	const { sy, sm, sd, ey, em, ed, tar, lbl, val, num, mode } = req.query;
 
 	let timeFilter	= await timeGen(sy, sm, sd, ey, em, ed);
 	let limitFilter = {};
@@ -46,12 +46,14 @@ app.get('/statistic', async function(req, res) {
 			break;
 	}
 
+	let limitNum = num ? +num : 10;
+
 	let result;
 
 	if (mode === '2') {
-		result = await doubleVar(timeFilter, limitFilter, tar);
+		result = await doubleVar(timeFilter, limitFilter, tar, limitNum);
 	} else {
-		result = await singleVar(timeFilter, tar);
+		result = await singleVar(timeFilter, tar, limitNum);
 	}
 
 	res.send(result);

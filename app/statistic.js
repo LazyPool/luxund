@@ -3,7 +3,7 @@ const { MongoClient } = require('mongodb');
 const uri = "mongodb://mongo:27017";
 const client = new MongoClient(uri);
 
-async function singleVar(timeFilter, tar) {
+async function singleVar(timeFilter, tar, num) {
 	let result;
 	try {
 		await client.connect();
@@ -20,7 +20,7 @@ async function singleVar(timeFilter, tar) {
 				count: { $sum: 1 }
 			} },
 			{ $sort: { count: -1 } },
-			{ $limit: 10 }
+			{ $limit: num }
 		]).toArray();
 	} catch(err) {
 		console.error(err);
@@ -30,7 +30,7 @@ async function singleVar(timeFilter, tar) {
 	return result;
 }
 
-async function doubleVar(timeFilter, limitFilter, tar) {
+async function doubleVar(timeFilter, limitFilter, tar, num) {
 	let result;
 	try {
 		await client.connect();
@@ -48,7 +48,7 @@ async function doubleVar(timeFilter, limitFilter, tar) {
 				count: { $sum: 1 }
 			} },
 			{ $sort: { count: -1 } },
-			{ $limit: 10 }
+			{ $limit: num }
 		]).toArray();
 	} catch(err) {
 		console.error(err);
