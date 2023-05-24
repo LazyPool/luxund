@@ -34,7 +34,9 @@ class VisualPage extends React.Component {
 			<div>
 				<Dashboard callback={ this.callBack }/>
 				<hr />
-				<Chart params={ this.state.params }/>
+				<ChartForCate params={ this.state.params }/>
+				<hr />
+				<ChartForNum params={ this.state.params }/>
 			</div>
 		);
 	}

@@ -1,10 +1,8 @@
-const { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } = Recharts;
-
-class Chart extends React.Component {
+class ChartForNum extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state={
-			data: []
+			data:[]
 		};
 	}
 
@@ -47,16 +45,7 @@ class Chart extends React.Component {
 
 	render() {
 		return (
-			<div id="bar-chart" style={{ width: "1500px", textAlign: "center" }}>
-				<BarChart width={1500} height={750} data={this.state.data}>
-					<CartesianGrid strokeDasharray="3 3" />
-					<XAxis dataKey="_id" angle={-70} interval={0} orientation="top"/>
-					<YAxis />
-					<Tooltip />
-					<Legend />
-					<Bar dataKey="count" fill="#6366f1" />
-				</BarChart>
-			</div>
+			<div></div>
 		);
 	}
 }
