@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient } = require("mongodb");
 
 const uri = "mongodb://mongo:27017";
 const client = new MongoClient(uri);
@@ -7,10 +7,10 @@ async function singleVar(timeFilter, tar, num) {
 	let result;
 	try {
 		await client.connect();
-		console.log('Connected successfully to server');
+		console.log("Connected successfully to server");
 
-		const luxund = client.db('luxund');
-		const people = luxund.collection('diary');
+		const luxund = client.db("luxund");
+		const people = luxund.collection("diary");
 
 		result = await people.aggregate([
 			{ $match: timeFilter },
@@ -34,10 +34,10 @@ async function doubleVar(timeFilter, limitFilter, tar, num) {
 	let result;
 	try {
 		await client.connect();
-		console.log('Connected successfully to server');
+		console.log("Connected successfully to server");
 
-		const luxund = client.db('luxund');
-		const people = luxund.collection('diary');
+		const luxund = client.db("luxund");
+		const people = luxund.collection("diary");
 
 		result = await people.aggregate([
 			{ $match: timeFilter },

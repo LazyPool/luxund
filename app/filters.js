@@ -1,4 +1,4 @@
-const { ObjectId } = require('mongodb');
+const { ObjectId } = require("mongodb");
 
 async function idGen(id) {
 	let filter = id ? { _id: new ObjectId(id) } : {};
@@ -16,7 +16,7 @@ async function timeGen(sy, sm, sd, ey, em, ed, ry, rm, rd) {
 	if (sy === ey && sm > em) return {};
 	if (sy === ey && sm === em && sd > ed) return {};
 
-	let filter = {}
+	let filter = {};
 	let conditions = [];
 
 	if (sy === ey) {
