@@ -1,6 +1,7 @@
 const express	= require("express");
+const cors = require("cors");
 const search	= require("/app/search.js");
-const { singleVar, doubleVar } = require("/app/statistic.js");
+const { singleVar, doubleVar, numByDate } = require("/app/statistic.js");
 const { idGen, timeGen, posGen, chrGen, whrGen, itemGen, affrGen } = require("/app/filters.js");
 
 const app = express();
@@ -52,11 +53,9 @@ app.get("/statistic", async function(req, res) {
 
 	let result;
 
-	if (mode === "2") {
-		result = await doubleVar(timeFilter, limitFilter, tar, limitNum);
-	} else {
-		result = await singleVar(timeFilter, tar, limitNum);
-	}
+	if (mode === "1")	result = await singleVar(timeFilter, tar, limitNum);
+	if (mode === "2") result = await doubleVar(timeFilter, limitFilter, tar, limitNum);
+	if (mode === "3") result = await numByDate(timeFilter, tar, limitNum);
 
 	res.send(result);
 });
