@@ -16,60 +16,25 @@ class VisualPage extends React.Component {
 				ed: 31,
 				lbl: "$人物",
 				val: "小峰"
-			},
-			result: {},
+			}
 		};
 	}
-
-	fetchData = () => {
-		let params = Object.entries(this.state.params);
-		let tokens = params.map(([key, value]) => {
-			return `${key}=${value}`;
-		});
-
-		let queryString = tokens.join("&");
-		fetch(`http://127.0.0.1:3000/statistic?${queryString}`)
-			.then(res => res.json())
-			.then(json => {
-				this.setState(
-					() => {
-						return { result: json };
-					},
-					() => {
-					}
-				);
-			});
-	};
-
-	debounce = (func, timeout = 300) => {
-		let timer;
-		return (...args) => {
-			clearTimeout(timer);
-			timer = setTimeout(() => { func.apply(this, args); }, timeout);
-		};
-	};
-
-	safeFetchData = this.debounce(() => this.fetchData());
 
 	callBack = (jsondata) => {
 		this.setState(
 			() => {
 				return jsondata;
 			},
-			this.safeFetchData()
+			() => {}
 		);
 	};
-
-	componentDidMount() {
-		this.safeFetchData();
-	}
 
 	render() {
 		return (
 			<div>
 				<Dashboard callback={ this.callBack }/>
 				<hr />
-				<Chart data={ this.state.result }/>
+				<Chart params={ this.state.params }/>
 			</div>
 		);
 	}
