@@ -95,8 +95,69 @@ async function numByDate(timeFilter) {
 	} finally {
 		await client.close();
 	}
-	console.log(result);
 	return result;
 }
 
-module.exports = { singleVar, doubleVar, numByDate };
+async function mapTree(timeFilter) {
+	let result;
+	try {
+		await client.connect();
+		console.log("Connected successfully to server");
+
+		const luxund = client.db("luxund");
+		const people = luxund.collection("diary");
+
+		result = await people.aggregate([
+			{
+				$facet: {
+					whr: [
+						{	$unwind: "$天气"},
+						{ $group: { _id: "$天气", size: { $sum: 1 } } },
+						{ $project: { _id: 0, name: "$_id", size: 1 } }
+					],
+					affr: [
+						{ $unwind: "$事件" },
+						{ $group: { _id: "$事件", size: { $sum: 1 } } },
+						{ $project: { _id: 0, name: "$_id", size: 1 } }
+					],
+					chr: [
+						{ $unwind: "$人物" },
+						{ $group: { _id: "$人物", size: { $sum: 1 } } },
+						{ $project: { _id: 0, name: "$_id", size: 1 } }
+					],
+					item: [
+						{ $unwind: "$物件" },
+						{ $group: { _id: "$物件", size: { $sum: 1 } } },
+						{ $project: { _id: 0, name: "$_id", size: 1 } }
+					],
+					pos: [
+						{ $unwind: "$地点" },
+						{ $group: { _id: "$地点", size: { $sum: 1 } } },
+						{ $project: { _id: 0, name: "$_id", size: 1 } }
+					],
+				}
+			},
+			{
+				$project:{
+					_id :0,
+					result:{
+						$concatArrays:[
+							[{name:"whr",children:"$whr"}],
+							[{name:"affr",children:"$affr"}],
+							[{name:"chr",children:"$chr"}],
+							[{name:"item",children:"$item"}],
+							[{name:"pos",children:"$pos"}]
+						]
+					}
+				}
+			}
+		]).toArray();
+	} catch(err) {
+		console.log(err);
+	} finally {
+		await client.close();
+	}
+	return result;
+}
+
+module.exports = { singleVar, doubleVar, numByDate, mapTree };
