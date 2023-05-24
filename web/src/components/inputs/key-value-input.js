@@ -3,7 +3,14 @@ class KeyValueInput extends React.Component {
 		super(props);
 		this.state = {
 			lbl: "$人物",
-			val: "小峰"
+			val: "小峰",
+			dict: {
+				$天气: "whr",
+				$事件: "affr",
+				$人物: "chr",
+				$物件: "item",
+				$地点: "pos"
+			}
 		};
 	}
 
@@ -13,7 +20,10 @@ class KeyValueInput extends React.Component {
 				return { lbl: event.target.value };
 			},
 			() => {
-				this.props.callback(this.state);
+				this.props.callback({
+					lbl: this.state.dict[this.state.lbl],
+					val: this.state.val
+				});
 			},
 		);
 	};
@@ -24,7 +34,10 @@ class KeyValueInput extends React.Component {
 				return { val: event.target.value };
 			},
 			() => {
-				this.props.callback(this.state);
+				this.props.callback({
+					lbl: this.state.dict[this.state.lbl],
+					val: this.state.val
+				});
 			},
 		);
 	};

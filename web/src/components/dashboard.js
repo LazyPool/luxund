@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
 			ey: 1929,
 			em: 12,
 			ed: 31,
-			lbl: "$人物",
+			lbl: "chr",
 			val: "小峰"
 		};
 	}
