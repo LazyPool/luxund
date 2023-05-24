@@ -38,6 +38,8 @@ class VisualPage extends React.Component {
 				<hr />
 				<ChartForNum params={ this.state.params }/>
 				<hr />
+				<ChartForTree params={ this.state.params }/>
+				<hr />
 			</div>
 		);
 	}

@@ -113,43 +113,52 @@ async function mapTree(timeFilter) {
 					whr: [
 						{	$unwind: "$天气"},
 						{ $group: { _id: "$天气", size: { $sum: 1 } } },
-						{ $project: { _id: 0, name: "$_id", size: 1 } }
+						{ $project: { _id: 0, name: "$_id", size: 1 } },
+						{ $sort: { size: -1 }},
+						{ $limit: 15 }
 					],
 					affr: [
 						{ $unwind: "$事件" },
 						{ $group: { _id: "$事件", size: { $sum: 1 } } },
-						{ $project: { _id: 0, name: "$_id", size: 1 } }
+						{ $project: { _id: 0, name: "$_id", size: 1 } },
+						{ $sort: { size: -1 }},
+						{ $limit: 15 }
 					],
 					chr: [
 						{ $unwind: "$人物" },
 						{ $group: { _id: "$人物", size: { $sum: 1 } } },
-						{ $project: { _id: 0, name: "$_id", size: 1 } }
+						{ $project: { _id: 0, name: "$_id", size: 1 } },
+						{ $sort: { size: -1 }},
+						{ $limit: 15 }
 					],
 					item: [
 						{ $unwind: "$物件" },
 						{ $group: { _id: "$物件", size: { $sum: 1 } } },
-						{ $project: { _id: 0, name: "$_id", size: 1 } }
+						{ $project: { _id: 0, name: "$_id", size: 1 } },
+						{ $sort: { size: -1 }},
+						{ $limit: 15 }
 					],
 					pos: [
 						{ $unwind: "$地点" },
 						{ $group: { _id: "$地点", size: { $sum: 1 } } },
-						{ $project: { _id: 0, name: "$_id", size: 1 } }
+						{ $project: { _id: 0, name: "$_id", size: 1 } },
+						{ $sort: { size: -1 }},
+						{ $limit: 15 }
 					],
 				}
 			},
-			{
-				$project:{
-					_id :0,
-					result:{
-						$concatArrays:[
-							[{name:"whr",children:"$whr"}],
-							[{name:"affr",children:"$affr"}],
-							[{name:"chr",children:"$chr"}],
-							[{name:"item",children:"$item"}],
-							[{name:"pos",children:"$pos"}]
+			{ 
+				$project: {
+					result: {
+						$concatArrays: [
+							[{name: "whr", children: "$whr"}],
+							[{name: "affr", children: "$affr"}],
+							[{name: "chr", children: "$chr"}],
+							[{name: "item", children: "$item"}],
+							[{name: "pos", children: "$pos"}],
 						]
 					}
-				}
+				} 
 			}
 		]).toArray();
 	} catch(err) {
@@ -157,7 +166,7 @@ async function mapTree(timeFilter) {
 	} finally {
 		await client.close();
 	}
-	return result;
+	return result[0].result;
 }
 
 module.exports = { singleVar, doubleVar, numByDate, mapTree };
