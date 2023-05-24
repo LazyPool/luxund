@@ -30,19 +30,19 @@ app.get("/statistic", async function(req, res) {
 
 	switch (lbl) {
 	case "pos":
-		limitFilter = posGen(val);
+		limitFilter = await posGen(val);
 		break;
 	case "chr":
-		limitFilter = chrGen(val);
+		limitFilter = await chrGen(val);
 		break;
 	case "whr":
-		limitFilter = whrGen(val);
+		limitFilter = await whrGen(val);
 		break;
 	case "item":
-		limitFilter = itemGen(val);
+		limitFilter = await itemGen(val);
 		break;
 	case "affr":
-		limitFilter = affrGen(val);
+		limitFilter = await affrGen(val);
 		break;
 	}
 

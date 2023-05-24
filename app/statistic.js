@@ -35,6 +35,8 @@ async function doubleVar(timeFilter, limitFilter, tar, num) {
 	try {
 		await client.connect();
 		console.log("Connected successfully to server");
+		console.log(timeFilter);
+		console.log(limitFilter);
 
 		const luxund = client.db("luxund");
 		const people = luxund.collection("diary");
