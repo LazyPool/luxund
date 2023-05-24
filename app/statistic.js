@@ -108,6 +108,7 @@ async function mapTree(timeFilter) {
 		const people = luxund.collection("diary");
 
 		result = await people.aggregate([
+			{ $match: timeFilter },
 			{
 				$facet: {
 					whr: [
