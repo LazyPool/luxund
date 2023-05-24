@@ -74,9 +74,21 @@ async function numByDate(timeFilter) {
 			{ $addFields: { chr: { $size: { $ifNull: [ "$人物", [] ] } } } },
 			{ $addFields: { item: { $size: { $ifNull: [ "$物件", [] ] } } } },
 			{ $addFields: { pos: { $size: { $ifNull: [ "$地点", [] ] } } } },
-			{ $addFields: { datestring: { $concat: [ { $toString: "$年" }, "-", { $toString: "$月" }, "-", { $toString: "$日" } ]} } },
+			{ $addFields: { datestring: { $concat: [ { $toString: "$年" }, "-", { $toString: "$月" }, "-", { $toString: "$日" } ] } } },
 			{ $addFields: { date: { $dateFromString: { dateString: "$datestring", format: "%Y-%m-%d" } } } },
-			{ $project: { date: 1, whr: 1, affr: 1, chr: 1, item: 1, pos: 1, _id: 0 } }
+			{ $group: {
+				_id: {
+					year: { $year: "$date" },
+					month: { $month: "$date" }
+				},
+				total_whr: { $sum: "$whr" },
+				total_affr: { $sum: "$affr" },
+				total_chr: { $sum: "$chr" },
+				total_item: { $sum: "$item" },
+				total_pos: { $sum: "$pos" },
+			} },
+			{ $addFields: { name: { $concat: [ { $toString: "$_id.year" }, "-" , { $toString: "$_id.month" } ] } } },
+			{ $sort : { "_id.year": 1, "_id.month": 1 } }
 		]).toArray();
 	} catch(err) {
 		console.log(err);

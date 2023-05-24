@@ -37,6 +37,7 @@ class VisualPage extends React.Component {
 				<ChartForCate params={ this.state.params }/>
 				<hr />
 				<ChartForNum params={ this.state.params }/>
+				<hr />
 			</div>
 		);
 	}
