@@ -15,7 +15,7 @@ class ChartForNum extends React.Component {
 		});
 
 		let queryString = tokens.join("&");
-		fetch(`http://127.0.0.1:3000/statistic?${queryString}`)
+		fetch(`http://47.98.242.187:3000/statistic?${queryString}`)
 			.then(res => res.json())
 			.then(json => {
 				this.setState(
