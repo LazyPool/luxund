@@ -20,10 +20,9 @@ class ChartForTree extends React.Component {
 			.then(json => {
 				this.setState(
 					() => {
-						return { data: json };
+						return { data: json[0].result };
 					},
 					() => {
-						console.log(this.state.data);
 					}
 				);
 			});

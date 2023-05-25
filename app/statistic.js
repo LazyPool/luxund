@@ -167,7 +167,7 @@ async function mapTree(timeFilter) {
 	} finally {
 		await client.close();
 	}
-	return result[0].result;
+	return result;
 }
 
 module.exports = { singleVar, doubleVar, numByDate, mapTree };
