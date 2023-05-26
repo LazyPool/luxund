@@ -5,7 +5,7 @@ class NavBar extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div id="navbar" className="navbar-list">
 				<nav>
 					<a href="/homepage">首页</a>
 					<a href="/advanced">高级搜索</a>

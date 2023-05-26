@@ -20,7 +20,7 @@ class ReaderPage extends React.Component {
 	render() {
 		const data = this.state.data;
 		return (
-			<div>
+			<div id="readerpage" className="reader-page">
 				<NavBar />
 				<TimeList data={data} />
 				<Content data={data} />

@@ -5,7 +5,7 @@ class TimeList extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div id="timelist" className="time-list">
 				{
 					this.props.data.map(
 						(item, index) => <a href={`#${item.年}-${item.月}-${item.日}`} key={index}>

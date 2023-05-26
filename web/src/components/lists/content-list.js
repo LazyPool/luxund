@@ -5,7 +5,7 @@ class Content extends React.Component {
 
 	render() {
 		return(
-			<div>
+			<div id="contentlist" className="content-list">
 				{
 					this.props.data.map(
 						(item, index) => <div id={`${item.年}-${item.月}-${item.日}`} key={index}>
