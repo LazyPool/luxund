@@ -26,6 +26,14 @@ nav a:hover {
     color: #666666;
 }
 
+.navbar2 {
+  font-size: 30px;
+}
+
+.activated {
+	background: #6666;
+}
+
 .time-list {
     position: fixed;
     top: 50px;

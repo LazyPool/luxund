@@ -7,11 +7,11 @@ class NavBar extends React.Component {
 		return (
 			<div id="navbar" className="navbar-list">
 				<nav>
-					<a href="/homepage">首页</a>
-					<a href="/advanced">高级搜索</a>
-					<a href="/reader">全文阅读</a>
-					<a href="/visual">图说日记</a>
-					<a href="/concatus">联系我们</a>
+					<a className="navbar0" href="/homepage">首页</a>
+					<a className="navbar1" href="/advanced">高级搜索</a>
+					<a className="navbar2" href="/reader">全文阅读</a>
+					<a className="navbar3" href="/visual">图说日记</a>
+					<a className="navbar4" href="/concatus">联系我们</a>
 				</nav>
 			</div>
 		);
