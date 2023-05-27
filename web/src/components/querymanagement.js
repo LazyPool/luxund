@@ -89,7 +89,8 @@ class QueryManagement extends React.Component {
 			let group = groups[key];
 
 			let subQuery = {};
-			let notConditions =[];
+			let notConditions = [];
+			let andConditions = [];
 
 			for (let j = 0; j < group.length; j++) {
 				let field = group[j].field;
@@ -98,12 +99,16 @@ class QueryManagement extends React.Component {
 				if (group[j].bool === "NOT") {
 					notConditions.push({ [field]: value });
 				} else {
-					subQuery[field] = value;
+					andConditions.push({ [field]: value });
 				}
 			}
 
 			if (notConditions.length > 0) {
 				subQuery.$nor = notConditions;
+			}
+
+			if (andConditions.length > 0) {
+				subQuery.$and = andConditions;
 			}
 
 			subQueries.push(subQuery);
