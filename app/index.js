@@ -1,5 +1,6 @@
 const express	= require("express");
 const cors		= require("cors");
+const bodyParser = require("body-parser");
 const search	= require("/app/search.js");
 const { singleVar, doubleVar, numByDate, mapTree } = require("/app/statistic.js");
 const { idGen, timeGen, posGen, chrGen, whrGen, itemGen, affrGen } = require("/app/filters.js");
@@ -7,6 +8,8 @@ const { idGen, timeGen, posGen, chrGen, whrGen, itemGen, affrGen } = require("/a
 const app = express();
 
 app.use(cors());
+
+app.use(bodyParser.json());
 
 app.get("/search", async function(req, res) {
 	const { id, sy, sm, sd, ey, em, ed, ry, rm, rd, pos, chr, whr, item, affr } = req.query;
@@ -20,6 +23,14 @@ app.get("/search", async function(req, res) {
 	let affrFilter  = await affrGen(affr);
 
 	let filter = { ...idFilter, ...timeFilter, ...posFilter, ...chrFilter, ...whrFilter, ...itemFilter, ...affrFilter };
+	let result = await search(filter);
+
+	res.send(result);
+});
+
+app.post("/search", async function(req, res) {
+	let filter = req.body;
+
 	let result = await search(filter);
 
 	res.send(result);
