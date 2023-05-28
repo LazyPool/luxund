@@ -3,12 +3,17 @@ const { MongoClient } = require("mongodb");
 const uri = "mongodb://mongo:27017?minPoolSize=10&maxPoolSize=100";
 const client = new MongoClient(uri);
 
+client.connect((err) => {
+	if (err) {
+		console.error(err);
+		return;
+	}
+	console.log("Connected successfully to server");
+});
+
 async function singleVar(timeFilter, tar, num) {
 	let result;
 	try {
-		await client.connect();
-		console.log("Connected successfully to server");
-
 		const luxund = client.db("luxund");
 		const people = luxund.collection("diary");
 
@@ -25,8 +30,6 @@ async function singleVar(timeFilter, tar, num) {
 	} catch(err) {
 		console.log("Catch Error at SingleVar!");
 		console.error(err);
-	} finally {
-		setTimeout(() => {client.close();}, 1500);
 	}
 	return result;
 }
@@ -34,9 +37,6 @@ async function singleVar(timeFilter, tar, num) {
 async function doubleVar(timeFilter, limitFilter, tar, num) {
 	let result;
 	try {
-		await client.connect();
-		console.log("Connected successfully to server");
-
 		const luxund = client.db("luxund");
 		const people = luxund.collection("diary");
 
@@ -54,8 +54,6 @@ async function doubleVar(timeFilter, limitFilter, tar, num) {
 	} catch(err) {
 		console.log("Catch Error at DoubleVar!");
 		console.error(err);
-	} finally {
-		setTimeout(() => {client.close();}, 1500);
 	}
 	return result;
 }
@@ -63,9 +61,6 @@ async function doubleVar(timeFilter, limitFilter, tar, num) {
 async function numByDate(timeFilter) {
 	let result;
 	try {
-		await client.connect();
-		console.log("Connected successfully to server");
-
 		const luxund = client.db("luxund");
 		const people = luxund.collection("diary");
 
@@ -95,8 +90,6 @@ async function numByDate(timeFilter) {
 	} catch(err) {
 		console.log("Catch Error at NumByDate!");
 		console.log(err);
-	} finally {
-		setTimeout(() => {client.close();}, 1500);
 	}
 	return result;
 }
@@ -104,9 +97,6 @@ async function numByDate(timeFilter) {
 async function mapTree(timeFilter) {
 	let result;
 	try {
-		await client.connect();
-		console.log("Connected successfully to server");
-
 		const luxund = client.db("luxund");
 		const people = luxund.collection("diary");
 
@@ -168,9 +158,6 @@ async function mapTree(timeFilter) {
 	} catch(err) {
 		console.log("Catch Error at MapTree!");
 		console.log(err);
-	} finally {
-		await client.close();
-		setTimeout(() => {client.close();}, 1500);
 	}
 	return result;
 }
@@ -178,9 +165,6 @@ async function mapTree(timeFilter) {
 async function wordCloud(timeFilter) {
 	let result;
 	try {
-		await client.connect();
-		console.log("Connected successfully to server");
-
 		const luxund = client.db("luxund");
 		const people = luxund.collection("diary");
 
@@ -196,8 +180,6 @@ async function wordCloud(timeFilter) {
 	} catch(err) {
 		console.log("Catch Error at WordCloud!");
 		console.log(err);
-	} finally {
-		setTimeout(() => {client.close();}, 1500);
 	}
 	return result;
 }
