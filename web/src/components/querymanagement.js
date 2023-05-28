@@ -1,7 +1,7 @@
 class QueryManagement extends React.Component {
 	constructor(props) {
 		super(props);
-		const uuid = crypto.randomUUID();
+		const uuid = Date.now();
 		this.state = {
 			querys: [
 				{ id: uuid, bool: "AND", field: "天气", value: "" }
@@ -10,7 +10,7 @@ class QueryManagement extends React.Component {
 	}
 
 	addQuery = () => {
-		const uuid = crypto.randomUUID();
+		const uuid = Date.now();
 		this.setState(
 			(prevState) => {
 				return { 
