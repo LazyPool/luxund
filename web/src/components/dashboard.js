@@ -29,12 +29,12 @@ class Dashboard extends React.Component {
 	};
 
 	isDisplay = () => {
-		return this.state.mode === 1 ? "none" : "block";
+		return this.state.mode === 1 ? "none" : "flex";
 	};
 
 	render() {
 		return (
-			<div id="dashboard" style={{ display: "flex", flexDirection: "column", justifyContent: "center", width: "1500px", textAlign: "center"}}>
+			<div id="dashboard" className="dashboard">
 				<ModeList callback={ this.callBack }/>
 				<KeyValueInput callback={ this.callBack } display={ this.isDisplay } />
 				<TimeSlider callback={ this.callBack }/>

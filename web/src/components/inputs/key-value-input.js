@@ -44,22 +44,21 @@ class KeyValueInput extends React.Component {
 
 	render() {
 		return (
-			<div id="key-value-input" style={{ marginTop: "10px", height: "50px", display: this.props.display() }}>
-				<div style={{ display: "inline-block" }}>选项：</div>
-				<div style={{ display: "inline-block"}}>
-					<div style={{ display: "flex", width: "700px"}}>
+			<div id="keyvalueinput"  className="key-value-input" style={{ display: this.props.display() }}>
+				<div className="tip-title">选项：</div>
+				<div className="tip-content">
+					<div>
 						<span>标签：</span>
-						<select value={this.state.lbl} style={{ flex: "1", padding: "inherit" }} className="form-select" onChange={this.handleSelectChange}>
+						<select value={this.state.lbl} onChange={this.handleSelectChange}>
 							<option>$天气</option>
 							<option>$事件</option>
 							<option>$人物</option>
 							<option>$物件</option>
 							<option>$地点</option>
 						</select>
-						<span style={{ flex: "1" }}></span>
 						<span>值：</span>
-						<input value={this.state.val} style={{ flex: "1", padding: "inherit" }} onChange={this.handleInputChange}/>
-						<span style={{ flex: "1" }}></span>
+						<input value={this.state.val} onChange={this.handleInputChange}/>
+						<span></span>
 					</div>
 				</div>
 			</div>

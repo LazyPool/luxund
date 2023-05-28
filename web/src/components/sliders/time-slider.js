@@ -62,13 +62,13 @@ class TimeSlider extends React.Component {
 
 	render() {
 		return(
-			<div id="time-slider" style={{ marginTop: "10px", height: "50px" }}>
-				<div style={{ display: "inline-block" }}>时间：</div>
-				<div style={{ display: "inline-block"}}>
-					<div>
-						<div style={{ display: "flex", width:"700px"}}>
-							<div style={{ flex: "1" }}>起：{ this.state.startTime.format(this.state.format) }</div>
-							<div style={{ flex: "1" }}>止：{ this.state.endTime.format(this.state.format) }</div>
+			<div id="timeslider" className="time-slider">
+				<div className="tip-title">时间：</div>
+				<div className="tip-content">
+					<div className="slider-container">
+						<div className="slider-text">
+							<div>起：{ this.state.startTime.format(this.state.format) }</div>
+							<div>止：{ this.state.endTime.format(this.state.format) }</div>
 						</div>
 						<Slider min={0} max={100} value={this.date2percent()} onChange={this.handleSliderChange} range />
 					</div>

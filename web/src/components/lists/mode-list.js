@@ -10,15 +10,6 @@ class ModeList extends React.Component {
 		};
 	}
 
-	itemStyle = (key) => {
-		return { 
-			flex: 1,
-			textAlign: "center", 
-			color: key === this.state.activated ? "white" : "black",
-			background: key === this.state.activated ? "#6366f1" : "white"
-		};
-	};
-
 	handleClickOn = (event) => {
 		this.setState(
 			() => {
@@ -36,12 +27,12 @@ class ModeList extends React.Component {
 
 	render() {
 		return (
-			<div id="mode-list" style={{ marginTop: "10px", height: "50px" }}>
-				<div style={{ display: "inline-block" }}>模式：</div>
-				<div style={{ display: "inline-block" }}>
-					<ul style={{ display: "flex", width: "700px" }} className="list-group list-group-horizontal">
+			<div id="modelist" className="mode-list">
+				<div className="tip-title">模式：</div>
+				<div className="tip-content">
+					<ul>
 						{
-							this.state.items.map((item, index) => <li value={index} style={this.itemStyle(index)} key={index} className="list-group-item" onClick={this.handleClickOn}>{item}</li>) 
+							this.state.items.map((item, index) => <li value={index} key={index} className={this.state.activated===index ? "activated" : "non-activated" } onClick={this.handleClickOn}>{item}</li>) 
 						}
 					</ul>
 				</div>

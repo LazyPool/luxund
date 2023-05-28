@@ -21,7 +21,7 @@ class AdvancedPage extends React.Component {
 	};
 
 	execSearch = () => {
-		fetch("http://127.0.0.1:3000/search", {
+		fetch("http://47.98.242.187:3000/search", {
 			method: "POST",
 			headers: { 
 				"Content-Type": "application/json" 

@@ -47,14 +47,14 @@ class ChartForCate extends React.Component {
 
 	render() {
 		return (
-			<div id="bar-chart" style={{ width: "1500px", textAlign: "center" }}>
-				<BarChart width={1500} height={750} data={this.state.data}>
+			<div id="bar-chart" className="chart-container">
+				<BarChart width={1000} height={618} data={this.state.data}>
 					<CartesianGrid strokeDasharray="3 3" />
 					<XAxis dataKey="_id" angle={-70} interval={0} orientation="top"/>
 					<YAxis />
 					<Tooltip />
 					<Legend />
-					<Bar dataKey="count" fill="#6366f1" />
+					<Bar dataKey="count" fill="#666666" />
 				</BarChart>
 			</div>
 		);

@@ -31,15 +31,13 @@ class VisualPage extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div id="visualpage" className="visual-page">
+				<NavBar />
+				<WordCloud params={ this.state.params }/>
 				<Dashboard callback={ this.callBack }/>
-				<hr />
 				<ChartForCate params={ this.state.params }/>
-				<hr />
 				<ChartForNum params={ this.state.params }/>
-				<hr />
 				<ChartForTree params={ this.state.params }/>
-				<hr />
 			</div>
 		);
 	}

@@ -170,4 +170,30 @@ async function mapTree(timeFilter) {
 	return result;
 }
 
-module.exports = { singleVar, doubleVar, numByDate, mapTree };
+async function wordCloud(timeFilter) {
+	let result;
+	try {
+		await client.connect();
+		console.log("Connected successfully to server");
+
+		const luxund = client.db("luxund");
+		const people = luxund.collection("diary");
+
+		result = await people.aggregate([
+			{ $match: timeFilter },
+			{ $project: { words: { $concatArrays: ["$天气", "$事件", "$人物", "$物件", "$地点"]}}},
+			{ $unwind: "$words" },
+			{ $group: { _id: "$words", count: { $sum: 1}}},
+			{ $project: { _id: 0, name: "$_id", value: "$count"}},
+			{ $sort: { value: -1 } },
+			{ $limit: 300 }
+		]).toArray();
+	} catch(err) {
+		console.log(err);
+	} finally {
+		await client.close();
+	}
+	return result;
+}
+
+module.exports = { singleVar, doubleVar, numByDate, mapTree, wordCloud };

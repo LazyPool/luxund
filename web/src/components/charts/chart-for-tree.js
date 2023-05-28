@@ -18,9 +18,10 @@ class ChartForTree extends React.Component {
 		fetch(`http://47.98.242.187:3000/statistic?${queryString}`)
 			.then(res => res.json())
 			.then(json => {
+				let data = json[0].result;
 				this.setState(
 					() => {
-						return { data: json[0].result };
+						return { data: data };
 					},
 					() => {
 					}
@@ -48,15 +49,16 @@ class ChartForTree extends React.Component {
 
 	render() {
 		return (
-			<div id="bar-chart" style={{ width: "1500px", textAlign: "center" }}>
+			<div id="tree-chart" className="chart-container">
 				<Treemap
-					width={1500}
-					height={750}
+					width={1000 * 0.95}
+					height={618 * 0.95}
+					style={{marginLeft:"auto", marginRight:"auto"}}
 					data={this.state.data}
 					dataKey="size"
-					aspectRatio={4 / 3}
-					stroke="#fff"
-					fill="#8884d8"
+					aspectRatio={500 / 309}
+					stroke="#ffffff"
+					fill="#666666"
 				/>
 			</div>
 		);

@@ -23,13 +23,13 @@ class NumSlider extends React.Component {
 
 	render() {
 		return (
-			<div id="num-slider" style={{ marginTop: "10px", height: "50px" }}>
-				<div style={{ display: "inline-block" }}>数量：</div>
-				<div style={{ display: "inline-block"}}>
-					<div style={{ display: "flex", width: "700px"}}>
-						<div style={{ flex: "1" }}>{ this.state.num }</div>
+			<div id="numslider" className="num-slider">
+				<div className="tip-title">数量：</div>
+				<div className="tip-content">
+					<div className="slider-container">
+						<div className="slider-text">{ this.state.num }</div>
+						<Slider min={0} max={50} value={this.state.num} onChange={this.handleSliderChange} />
 					</div>
-					<Slider min={0} max={50} value={this.state.num} onChange={this.handleSliderChange} />
 				</div>
 			</div>
 		);	
