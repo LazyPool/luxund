@@ -23,6 +23,7 @@ async function singleVar(timeFilter, tar, num) {
 			{ $limit: num }
 		]).toArray();
 	} catch(err) {
+		console.log("Catch Error at SingleVar!");
 		console.error(err);
 	} finally {
 		await client.close();
@@ -51,6 +52,7 @@ async function doubleVar(timeFilter, limitFilter, tar, num) {
 			{ $limit: num }
 		]).toArray();
 	} catch(err) {
+		console.log("Catch Error at DoubleVar!");
 		console.error(err);
 	} finally {
 		await client.close();
@@ -91,6 +93,7 @@ async function numByDate(timeFilter) {
 			{ $sort : { "_id.year": 1, "_id.month": 1 } }
 		]).toArray();
 	} catch(err) {
+		console.log("Catch Error at NumByDate!");
 		console.log(err);
 	} finally {
 		await client.close();
@@ -163,6 +166,7 @@ async function mapTree(timeFilter) {
 			}
 		]).toArray();
 	} catch(err) {
+		console.log("Catch Error at MapTree!");
 		console.log(err);
 	} finally {
 		await client.close();
@@ -189,6 +193,7 @@ async function wordCloud(timeFilter) {
 			{ $limit: 300 }
 		]).toArray();
 	} catch(err) {
+		console.log("Catch Error at WordCloud!");
 		console.log(err);
 	} finally {
 		await client.close();
