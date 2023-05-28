@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 
-const uri = "mongodb://mongo:27017";
+const uri = "mongodb://mongo:27017?minPoolSize=10&maxPoolSize=100";
 const client = new MongoClient(uri);
 
 async function singleVar(timeFilter, tar, num) {
@@ -26,7 +26,7 @@ async function singleVar(timeFilter, tar, num) {
 		console.log("Catch Error at SingleVar!");
 		console.error(err);
 	} finally {
-		await client.close();
+		setTimeout(() => {client.close();}, 1500);
 	}
 	return result;
 }
@@ -55,7 +55,7 @@ async function doubleVar(timeFilter, limitFilter, tar, num) {
 		console.log("Catch Error at DoubleVar!");
 		console.error(err);
 	} finally {
-		await client.close();
+		setTimeout(() => {client.close();}, 1500);
 	}
 	return result;
 }
@@ -96,7 +96,7 @@ async function numByDate(timeFilter) {
 		console.log("Catch Error at NumByDate!");
 		console.log(err);
 	} finally {
-		await client.close();
+		setTimeout(() => {client.close();}, 1500);
 	}
 	return result;
 }
@@ -170,6 +170,7 @@ async function mapTree(timeFilter) {
 		console.log(err);
 	} finally {
 		await client.close();
+		setTimeout(() => {client.close();}, 1500);
 	}
 	return result;
 }
@@ -196,7 +197,7 @@ async function wordCloud(timeFilter) {
 		console.log("Catch Error at WordCloud!");
 		console.log(err);
 	} finally {
-		await client.close();
+		setTimeout(() => {client.close();}, 1500);
 	}
 	return result;
 }

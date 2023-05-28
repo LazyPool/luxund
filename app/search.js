@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 
-const uri = "mongodb://mongo:27017";
+const uri = "mongodb://mongo:27017?minPoolSize=10&maxPoolSize=100";
 const client = new MongoClient(uri);
 
 async function search(filter) {
@@ -16,7 +16,7 @@ async function search(filter) {
 	} catch(err) {
 		console.error(err);
 	} finally {
-		await client.close();
+		setTimeout(() => {client.close();}, 1500);
 	}
 	return result;
 } 
