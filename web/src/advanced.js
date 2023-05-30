@@ -42,6 +42,7 @@ class AdvancedPage extends React.Component {
 		return (
 			<div id="advancedpage" className="advanced-page">
 				<NavBar />
+				<h1 className="logo">鲁迅日记</h1>
 				<QueryManagement callback={this.callBack} search={this.execSearch}/>
 				<ResultList diaries={this.state.diaries}/>
 			</div>

@@ -33,6 +33,7 @@ class VisualPage extends React.Component {
 		return (
 			<div id="visualpage" className="visual-page">
 				<NavBar />
+				<h1 className="logo">鲁迅日记</h1>
 				<WordCloud params={ this.state.params }/>
 				<Dashboard callback={ this.callBack }/>
 				<ChartForCate params={ this.state.params }/>

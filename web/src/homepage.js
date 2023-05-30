@@ -39,7 +39,9 @@ class HomePage extends React.Component {
 	render() {
 		return (
 			<div id="homepage" className="homepage">
+				<h1 className="logo">鲁迅日记</h1>
 				<NavBar />
+				<h1 className="title">鲁迅日记</h1>
 				<SimpleSearch callback={this.callBack} />
 				<ResultList diaries={this.state.diaries} />
 			</div>

@@ -13,7 +13,7 @@ class WordCloud extends React.Component {
 					{
 						type: "wordCloud",
 						maskImage: mask,
-						width: "100%",
+						width: "80%",
 						height: "100%",
 						sizeRange: [16, 64],
 						rotationRange: [0, 0],

@@ -58,7 +58,7 @@ class ChartForTree extends React.Component {
 					dataKey="size"
 					aspectRatio={500 / 309}
 					stroke="#ffffff"
-					fill="#666666"
+					fill="#8884d8"
 				/>
 			</div>
 		);

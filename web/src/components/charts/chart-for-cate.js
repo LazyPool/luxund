@@ -54,7 +54,7 @@ class ChartForCate extends React.Component {
 					<YAxis />
 					<Tooltip />
 					<Legend />
-					<Bar dataKey="count" fill="#666666" />
+					<Bar dataKey="count" fill="#1F6ED4" fillOpacity={0.7} />
 				</BarChart>
 			</div>
 		);

@@ -22,6 +22,7 @@ class ReaderPage extends React.Component {
 		return (
 			<div id="readerpage" className="reader-page">
 				<NavBar />
+				<h1 className="logo">鲁迅日记</h1>
 				<TimeList data={data} />
 				<Content data={data} />
 			</div>
